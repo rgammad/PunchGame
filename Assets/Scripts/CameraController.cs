@@ -8,6 +8,11 @@ public class CameraController : MonoBehaviour
     public float rotateSpeed = 5;
     private Vector3 offset;
 
+    /*TODO: control camera's vertical rotation
+     *      limit vertical rotation?
+     *      
+    */
+
     private void Start()
     {
         offset = target.transform.position - transform.position;
