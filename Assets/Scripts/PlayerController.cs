@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         isJumping = false;
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponentInChildren<Rigidbody>();
         rigid.freezeRotation = true;
     }
 
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         if (isJumping)
         {
             canJump = false;
-            rigid.velocity = new Vector3(0, jumpHeight, 0);
+            // rigid.velocity = new Vector3(0, jumpHeight, 0);
             isJumping = false;
         }
     }
