@@ -12,6 +12,7 @@ public class MouseLook : MonoBehaviour
     {
         FirstPerson = 0, ThirdPerson = 1
     }
+
     /* Put script on both player and player camera
      * select MouseXAndY to control rotation w/ mouse x & y input
      * select MouseY to control rotation w/ mouse y input only
@@ -28,6 +29,9 @@ public class MouseLook : MonoBehaviour
     public float minimumY = -360f;
     public float maximumY = 360f;
 
+    [SerializeField]
+    static GameObject cameraHolder;
+
     private float rotationX = 0f;
     private float rotationY = 0f;
     private Quaternion originalRotation;
@@ -39,6 +43,21 @@ public class MouseLook : MonoBehaviour
         originalRotation = transform.localRotation;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        cameraHolder = GameObject.Find("CameraHolder");
+        switch (persp)
+        {
+            case PerspectiveSetting.FirstPerson:
+                cameraHolder.transform.localPosition = new Vector3(0, 0.95f, 0);
+                cameraHolder.transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case PerspectiveSetting.ThirdPerson:
+                cameraHolder.transform.localPosition = new Vector3(0, 3, -3);
+                cameraHolder.transform.rotation = Quaternion.Euler(20, 0, 0);
+                break;
+            default:
+                break;
+        }
     }
 
     public static float ClampAngle(float angle, float min, float max)
