@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isJumping)
         {
-            canJump = false;
             rigid.velocity = new Vector3(0, jumpHeight, 0);
             isJumping = false;
         }

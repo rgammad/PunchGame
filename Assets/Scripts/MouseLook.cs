@@ -30,7 +30,7 @@ public class MouseLook : MonoBehaviour
     public float maximumY = 360f;
 
     [SerializeField]
-    static GameObject cameraHolder;
+    GameObject cameraHolder;
 
     private float rotationX = 0f;
     private float rotationY = 0f;
@@ -48,12 +48,12 @@ public class MouseLook : MonoBehaviour
         switch (persp)
         {
             case PerspectiveSetting.FirstPerson:
-                cameraHolder.transform.localPosition = new Vector3(0, 0.95f, 0);
+                cameraHolder.transform.position = GameObject.Find("FirstPersonHolder").transform.position;
                 cameraHolder.transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case PerspectiveSetting.ThirdPerson:
-                cameraHolder.transform.localPosition = new Vector3(0, 3, -3);
-                cameraHolder.transform.rotation = Quaternion.Euler(20, 0, 0);
+                cameraHolder.transform.position = GameObject.Find("ThirdPersonHolder").transform.position;
+                cameraHolder.transform.rotation = GameObject.Find("ThirdPersonHolder").transform.rotation;
                 break;
             default:
                 break;
