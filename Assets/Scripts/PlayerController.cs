@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         if (isJumping)
         {
             canJump = false;
-            // rigid.velocity = new Vector3(0, jumpHeight, 0);
+            rigid.velocity = new Vector3(0, jumpHeight, 0);
             isJumping = false;
         }
     }
@@ -70,8 +70,7 @@ public class PlayerController : MonoBehaviour
     private bool _CheckCanJump()
     {
         RaycastHit hit;
-        Physics.Raycast(transform.position, Vector3.down, out hit, 1.05f);
-        if (hit.collider.CompareTag("ground"))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.05f) && hit.collider.CompareTag("ground"))
             return true;
         return false;
     }
