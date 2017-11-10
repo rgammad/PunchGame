@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
 
     public float moveSpeed = 5;
@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 movement;
     private bool isJumping = false;
-    private bool canJump = false;
     private Rigidbody rigid;
 
     private void Start()
@@ -53,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void _pgMoveHandler()
     {
         transform.Translate(movement * Time.deltaTime * moveSpeed);
+        //rigid.velocity = movement * moveSpeed;
     }
     private void _pgJumpHandler()
     {
