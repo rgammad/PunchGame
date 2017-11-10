@@ -5,10 +5,6 @@ public enum RotationAxes
 {
     MouseXAndY = 0, MouseX = 1, MouseY = 2
 }
-public enum PerspectiveSetting
-{
-    FirstPerson = 0, ThirdPerson = 1
-}
 
 /* Put script on both player and player camera
  * select MouseXAndY to control rotation w/ mouse x & y input
@@ -17,21 +13,17 @@ public enum PerspectiveSetting
  */
 public class MouseLook : MonoBehaviour
 {
-   
 
     public RotationAxes axes = RotationAxes.MouseXAndY;
-    public static PerspectiveSetting mLpersp = PerspectiveSetting.FirstPerson;
 
     public static float mLsensitivityY = 15f;
     public static float mLsensitivityX = 15f;
-           
+
     public static float mLminimumX = -360f;
     public static float mLmaximumX = 360f;
     public static float mLminimumY = -360f;
     public static float mLmaximumY = 360f;
 
-    [SerializeField]
-    GameObject cameraHolder;
 
     private float rotationX = 0f;
     private float rotationY = 0f;
@@ -41,11 +33,11 @@ public class MouseLook : MonoBehaviour
     {
         if (GetComponent<Rigidbody>())
             GetComponent<Rigidbody>().freezeRotation = true;
+
         originalRotation = transform.localRotation;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        cameraHolder = GameObject.Find("CameraHolder");
     }
 
     public static float ClampAngle(float angle, float min, float max)
@@ -59,10 +51,7 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-       
-        _ChangeCameraPerspective();
         _MouseLook();
-
     }
 
     private void _MouseLook()
@@ -91,23 +80,6 @@ public class MouseLook : MonoBehaviour
                 rotationY = ClampAngle(rotationY, mLminimumY, mLmaximumY);
                 yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
                 transform.localRotation = originalRotation * yQuaternion;
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void _ChangeCameraPerspective()
-    {
-        switch (mLpersp)
-        {
-            case PerspectiveSetting.FirstPerson:
-                cameraHolder.transform.position = GameObject.Find("FirstPersonHolder").transform.position;
-                cameraHolder.transform.rotation = GameObject.Find("ThirdPersonHolder").transform.rotation;
-                break;
-            case PerspectiveSetting.ThirdPerson:
-                cameraHolder.transform.position = GameObject.Find("ThirdPersonHolder").transform.position;
-                cameraHolder.transform.rotation = GameObject.Find("ThirdPersonHolder").transform.rotation;
                 break;
             default:
                 break;

@@ -37,9 +37,9 @@ public class PlayerMovementController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-
-        movement = new Vector3(horizontal, 0, vertical);
+            movement = new Vector3(horizontal, 0, vertical);
     }
+
     private void _pgJumpInput()
     {
         if (Input.GetButtonDown("Jump") && _CheckCanJump())
@@ -51,8 +51,7 @@ public class PlayerMovementController : MonoBehaviour
     //Input handler functions
     private void _pgMoveHandler()
     {
-        transform.Translate(movement * Time.deltaTime * moveSpeed);
-        //rigid.velocity = movement * moveSpeed;
+       transform.Translate(movement * Time.deltaTime * moveSpeed);
     }
     private void _pgJumpHandler()
     {

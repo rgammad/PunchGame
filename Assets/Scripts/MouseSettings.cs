@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseSettings : MonoBehaviour {
-
-    [SerializeField]
-    PerspectiveSetting persp = PerspectiveSetting.FirstPerson;
+    
     [SerializeField]
     float sensitivityX = 15f;
     [SerializeField]
@@ -22,10 +20,6 @@ public class MouseSettings : MonoBehaviour {
 
     private void LateUpdate()
     {
-
-        if (MouseLook.mLpersp != persp)
-            MouseLook.mLpersp = persp;
-
         if (MouseLook.mLsensitivityX != sensitivityX)
             MouseLook.mLsensitivityX = sensitivityX;
 
